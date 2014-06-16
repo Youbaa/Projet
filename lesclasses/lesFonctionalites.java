@@ -182,13 +182,14 @@ peut déduire que le chiffre utilisé est poly-alphabétique.
 		int Idx = 0;
 		int n=0;
 
-		ArrayList Tab1 = new ArrayList();
-		ArrayList Tab2 = new ArrayList();
+		ArrayList Tab1 = new ArrayList();//créer un tableau (dynamique) pour stocker les fréquences de chaque caractère
+		ArrayList Tab2 = new ArrayList();//créer un tableau (dynamique) pour stocker les caractères présents dans le texte
 
 
 
-		while (j<file1.length())
-		{
+		while (j<file1.length())// parcourir tous les caractères du texte 'file1'
+		{   
+	        // normaliser le caractère 'j' du texte 'file1' (ie. enlever les accents si le caractère est accentué)
 			c2=(int)file1.charAt(j);
 			i=0;			
 			char kk;
@@ -198,18 +199,21 @@ peut déduire que le chiffre utilisé est poly-alphabétique.
 			nom=Normalizer.normalize(mot, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "").toUpperCase();
 			kk=nom.charAt(0);
 			c2=(int)kk;
+			   // -------------Fin de la normalisation  du caractère 'j'----------------------------
+
+
+			Sortir=0;//créer une variable binaire (Sortir =1 implique on sort de la boucle et opn passe au caractère suivant) pour 
+	        /* 1) : éliminer les caractères non alpha-numériques 
+	         * 2) : ou éviter d'éffectuer des calculs inutiles en cas où le caractère est déjà stocké dans 'Tab2'
+	         */
 
 
 
-			Sortir=0;
-
-
-
-			while(i<Tab1.size() && Sortir==0)
+			while(i<Tab1.size() && Sortir==0)//on parcout 'Tab1' pour vérifier si le caractère 'j' du texte 'file1' est déjà stocké ou non
 			{
-				if (Tab1.size()>0)
+				if (Tab1.size()>0)// tester s'il y a au moins un caractère stocké dans 'Tab1' : si 'non', on sort de la boucle.
 				{
-					if (c2==32 || (c2<65) || (c2>90))
+					if (c2==32 || (c2<65) || (c2>90)) // on vérifie si le caractère 'j' du texte 'file1' est alpha-numérique: si 'non', on sort de la boucle 
 					{
 
 						Sortir=1;
@@ -217,10 +221,10 @@ peut déduire que le chiffre utilisé est poly-alphabétique.
 					else
 					{						
 
-						if((Integer)Tab2.get(i)==c2)
+						if((Integer)Tab2.get(i)==c2)// On teste si le caractère 'j' du texte 'file1' est présent déjà stocké 
 						{
-							Tab1.set(i, (int)Tab1.get(i)+1);
-							if (max<(int)Tab1.get(i))
+							Tab1.set(i, (int)Tab1.get(i)+1);// si oui (le caractère 'j' du texte 'file1' est présent déjà stocké), on incrémente sa fréquence dans 'Tab1' et on sort de la boucle (Sortir prends la valeur 1)
+							if (max<(int)Tab1.get(i))// cette boucle permet juste de calculer le caractère le plus fréquent (elle peut ettre supprimer)
 							{
 								max = (int)Tab1.get(i);
 								Idx = i;
@@ -236,9 +240,9 @@ peut déduire que le chiffre utilisé est poly-alphabétique.
 
 			}
 
-			if (Sortir==0)
+			if (Sortir==0)// Si le caractère  'j' du texte 'file1' n'est stocké dans 'Tab2' (Sortie =0, cela veut dire que c'est un caractère alpha-numérique et en plus non présent dans 'Tab2')
 			{
-				Tab1.add(1);
+				Tab1.add(1);//Si oui, ajouter le caractère 'j' du texte 'file1' dans 'Tab2' et affecter sa fréquence à '1' dans 'Tab1'
 				Tab2.add(c2);
 			}
 			j=j+1;
@@ -247,40 +251,40 @@ peut déduire que le chiffre utilisé est poly-alphabétique.
 
 
 
-		float somme=0;
-		ArrayList Tab = new ArrayList();
+		float somme=0;// créer une variable qui contiendra la sommes de toutes les fréquences des caractère alpha-numériques du texte 'file1'
+		ArrayList Tab = new ArrayList(); // créer un tableau qui contiendra les caractères en "unicode" du tableau Tab1 (Tab1 est en ascii). Peut être supprimer
 
-		for (i=0;i<Tab1.size();i++)
+		for (i=0;i<Tab1.size();i++)// Parcourir toutes les fréquences des lettre pour : 1) calculer la somme de ces dernière et 2) transformer Tab1 "unicode"
 		{
-			StringBuffer car = new StringBuffer();
-			char k1;
-			int i1;			
+			StringBuffer car = new StringBuffer();//sert à transformer Tab1 en "unicode"
+			char k1;//sert à transformer Tab1 en "unicode"
+			int i1;//sert à transformer Tab1 en "unicode"			
 
-			somme=somme+(int)Tab1.get(i)*((int)Tab1.get(i)-1);
-			n=n+(int)Tab1.get(i);
+			somme=somme+(int)Tab1.get(i)*((int)Tab1.get(i)-1);// mettre à jours la somme des fréquences
+			n=n+(int)Tab1.get(i);// mettre à jours le nombre de caractères alpha-numériiques présents dans le texte 'file1'
 
-			i1=(Integer)Tab2.get(i);
+			i1=(Integer)Tab2.get(i);//sert à transformer Tab1 en "unicode"
 
-			k1=(char)i1;
+			k1=(char)i1;//sert à transformer Tab1 en "unicode"
 			car.append(k1);
-			Tab.add(car);
+			Tab.add(car);// ajouter le caractère "unicode" à 'Tab'
 
 		}
-		StringBuffer car = new StringBuffer();
-		float IC = (float) somme/(n*(n-1));
-		char k1;
+		StringBuffer car = new StringBuffer();//sert à Transformer le caractère le plus fréquent dans le texte en 'unicode'
+		float IC = (float) somme/(n*(n-1));//calculer l'indice de coincidence (qui vaut la somme des fréquences des caractère alpha-numériques / (n*(n-1)))
+		char k1;//sert à Transformer le caractère le plus fréquent dans le texte en 'unicode'
 		char k2;
-		int i1;
+		int i1;//sert à Transformer le caractère le plus fréquent dans le texte en 'unicode'
 		int i2;
 
-		i1=(Integer)Tab2.get(Idx);
+		i1=(Integer)Tab2.get(Idx);//sert à Transformer le caractère le plus fréquent dans le texte en 'unicode'
 
-		k1=(char)i1;
+		k1=(char)i1;//sert à Transformer le caractère le plus fréquent dans le texte en 'unicode'
 
-		car.append(k1);
+		car.append(k1);//sert à Transformer le caractère le plus fréquent dans le texte en 'unicode'
 
 
-		ArrayList Tab4 = new ArrayList();
+		ArrayList Tab4 = new ArrayList();// créer une variable pour contenir tous les résultats à renvoyer (peut être supprimer car on renvoie que IC)
 
 		Tab4.add(IC);
 		Tab4.add(Idx);
@@ -702,7 +706,7 @@ peut déduire que le chiffre utilisé est poly-alphabétique.
 			{ System.out.println("*************Résultat de la fonction  la longeur de la clé***********************");
 
 			////appel a la fonction qui calcule la longeur de la clé. 
-			/* Cette méthode mange comme paramètres: 
+			/* Cette méthode prend comme paramètres: 
 			 * 1) un texte (récupéré dans un fichier) 
 			 * 2) l'indice de coincidence de la langue étudiée*////
 
@@ -746,7 +750,7 @@ peut déduire que le chiffre utilisé est poly-alphabétique.
 			case 4: 
 			{ System.out.println("******************Résultat de la fonction longeur de mots******************");
 			////////appel a la fonction "longeur de mots" qui donne la distribution des longeurs des mots présents dans le texte.
-			/* Cette fonction mange comme paramètres : Le chemin du fichier à étudier   */
+			/* Cette fonction prend comme paramètres : Le chemin du fichier à étudier   */
 
 
 
@@ -772,7 +776,7 @@ peut déduire que le chiffre utilisé est poly-alphabétique.
 			{ System.out.println("***************Résultat de la fonction n-grammes*********************");
 			//// Appel à la fonction n-grammes /////
 			/*
-			 * Cette fonction mange comme paramètre : 
+			 * Cette fonction prend comme paramètre : 
 			 * 1) Le chemin du texte à étudier (fichier dans l'exemple en bas)
 			 * 2) Un entier (entre 0 ou 1) qui indique si l'analyse est glissante ou pas (Glissant dans l'exemple en bas)
 			 * 3) Un entier (entre 1 et 4) qui indique le type des lettres étudiées (Type_L dans l'exemple en bas)
