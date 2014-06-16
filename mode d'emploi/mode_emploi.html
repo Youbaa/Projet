@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3c.org/1999/xhtml" xml:lang="fr" lang="fr">
+
+	<head>
+		<title>ToolCrypt : mode d'emploi</title>
+	</head>
+
+	<body style="font-family:'Trebuchet MS', Arial, Helvetica, sans-serif">
+    
+		<big><u><strong>A - Mode d'utilisation</u></strong></big><br/>
+		<br/>
+		<br/>
+		<u><strong><a name="presentation">Pr&eacute;sentation de l'application</a></strong></u><br/>
+		<br/>
+		- Cette page constitue le mode d'utilisation de notre application ToolCrypt, l'outil développé dans le cadre du projet "Boite Noire" Master 1 de fin d'année spécialité "Sécurité des Systèmes Informatiques" à l'université Paris-Est Créteil (UPEC)<br/>
+		<br/>
+        
+		<br/>
+        - Cet outil a été développé en Java et  permet à un cryptanaliste d'introduire des fichiers crypté et à l'aide des différentes fonctionnalitées ( découpage par bloc, analyse par fréquence, substitution...) il pourra avoir des sorties exploitable qui vont l'aider à décrypter le fichier.
+      <br/>
+		<br/>
+		<br/>
+		<br/>
+		<u><strong><a name="presentationinter">Pr&eacute;sentation de l'interface graphique</a></strong></u><br/>
+		<br/>
+		<br/>
+        L'interface graphique de notre outil contient un volet d'exploration qui contient Fichier et Aide, un accée à l'explorateur windows pour trouver le fichier texte sur lequel vous voulez travailler, un menu déroulent avec les différentes fonctionnalités, ainsi que deux anglets, le premier "Résultat" pour visualisez le liens du fichier sortant, et le deuxième "Historique" pour revoir les différentes opérations effectuer.
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+		<div align="center"><image src="interface.jpg"/></div><br/>
+		<br/>
+		
+		
+		<u><strong><a name="exemple">Exemple global d'utilisation</a></strong></u><br/>
+		<br/>
+        
+		
+        Pour commencer il faut charger un fichier texte avec "Parcourir" et choisir une fonctionnalité (ici "Découpage par bloc").<br/><br/>
+		<div align="center"><image src="parcourir.jpg"/></div><br/>
+		
+		<br/>
+          Appuyez sur "Run" puis récupérer le fichier dans l'explorateur windows<br/><br/>
+		<div align="center"><image src="run.jpg"/></div><br/>
+        <div align="center"><image src="historique.jpg"/></div><br/>
+		<br/>
+		<br/>
+		
+		
+		<u><strong><a name="ajout">Ajout d'un fichier / Execution</u></strong></a><br/>
+		<br/>
+		cliquer sur le bouton parcourir :<br/>
+		<div align="center"><image src="ajout.jpg"/></div><br/><br/>
+		<br/>
+		cliquer sur le bouton executé :<br/>
+		<div align="center"><image src="execute.jpg"/></div><br/><br/>
+		<u><strong><a name="resultat_historique">Résultat / Historique</a></strong></u><br/>
+		<br/>
+		Pour visualier l'historique de vos différents traitements 
+		simple il vous suffit de cliquer sur le l'anglet Historique :<br/>
+		<div align="center"><image src="historique1.jpg"/></div><br/><br/>
+		
+		<u><strong><a name="coupier_couper">Copier / Couper</a></strong></u><br/>
+		<br/>
+        <br/>
+		<div align="center"><image src="cop.jpg"/></div><br/><br/>
+				
+		
+		
+		<big><u><strong>B - Fonctionnalités</strong></u></big><br/>
+        <br/><br/>
+       <font color="#FF0000"> Pour expliquer les différentes fonctionnalités nous avons utiliser un fichier texte crypyé qui se trouve </font><a href="FichierCrypté.txt">ici</a> 
+		<br/><br/>
+		
+		<u><strong><a name="bloc">D&eacute;coupage en bloc</a></strong></u><br/><br/>
+        -Séléctionner le fichier,<br/>
+        -choisir la fonctionnalité "découpage par bloc",<br/> 				        -excecuté l'application,<br/>
+        -choisir la taille de chaque bloc<br/><br/>
+        <div align="center"><image src="bloc.jpg"/></div>
+        <br/>
+       <br/> 
+       Comme sortie on aura le résultat afficher sur la console et le lien d'un fichier texte qui contient ce résultat<br/><br/>
+       <div align="center"><image src="resultbloc.jpg"/></div>
+        <br/>
+		<br/>
+		
+		
+		<u><strong><a name="freqb">Analyse de frequence par bloc</a></strong></u><br/><br/>
+        -Séléctionner le fichier,<br/>
+        -choisir la fonctionnalité "Analyse de fréquence par bloc",<br/> 				        -excecuté l'application,<br/>
+        -choisir la taille de chaque bloc<br/>
+        -Choisir la position<br/><br/>
+        <div align="center"><image src="freqb.jpg"/></div>
+        <br/>
+       <br/> 
+       Comme sortie on aura le résultat afficher sur la console <br/><br/>
+       <div align="center"><image src="resultfreqb.jpg"/></div>
+		<br/><br/>
+        	<u><strong><a name="freqc">Analyse de frequence par caractère</a></strong></u><br/><br/>
+        -Séléctionner le fichier,<br/>
+        -choisir la fonctionnalité "Analyse de fréquence par caractére",<br/> 				       
+         -excecuté l'application,<br/>
+            -Visualier le resultat sur la console (il donne pour chaque caractére le nombre de répetition ainsi que sa fréquence dans le texte)<br/><br/>
+        <div align="center"><image src="freqc.jpg"/></div>
+        <br/>
+       <br/> 
+       <font color="#FF0000" <u><strong><a name="">Analyse en boite noire</a></strong></u><br/> </font>
+		<br/><br/>
+        <u><strong><a name="sub">Substitution</a></strong></u><br/>
+		<br/>
+        -Séléctionner le fichier,<br/>
+        -choisir la fonctionnalité "Substitution",<br/> 				       -choisir le caractére à changer et par quoi il va être changer
+         -excecuté l'application,<br/>
+            -Visualier le resultat sur la console avec le lien d'un fichier ou ce trouve ce résultat<br/><br/>
+        <div align="center"><image src="sub.jpg"/></div>
+        <br/>
+       <br/> 
+       <u><strong><a name="subb">Substitution par bloc</a></strong></u><br/>
+		<br/>
+        -Séléctionner le fichier,<br/>
+        -choisir la fonctionnalité "Substitution par bloc",<br/> 				       -choisir le caractére à changer et par quoi il va être changer
+         -excecuté l'application,<br/>
+         -choisir la taille des blocs et la position<br/>
+            -Visualier le resultat sur la console avec le lien d'un fichier ou ce trouve ce résultat<br/><br/>
+        <div align="center"><image src="subb.jpg"/></div><br/>
+         <div align="center"><image src="resultsubb.jpg"/></div>
+         <br/><br/>
+        <u><strong><a name="xor">Xor</a></strong></u><br/><br/><br/>
+		<br/>
+        -Séléctionner le fichier,<br/>
+        -choisir la fonctionnalité "XOR",<br/>
+        -choisir le type d'opération "xor par bloc" ou "xor par caractére"(dans l'exemple "xor par caractére"<br/> 
+         -choisir le caractére avec quoi faire le xor<br/> 
+         -excecuté l'application.
+            <br/><br/>
+            <div align="center"><image src="xor.jpg"/></div><br/>
+            <br/>
+            -Visualier le resultat sur la console avec le lien d'un fichier ou ce trouve ce résultat<br/><br/>
+            <div align="center"><image src="resultxor.jpg"/></div><br/>
+            <br/>
+            
+        <u><strong><a name="">UnicodeToAscii</a></strong></u><br/><br/><br/>
+		<br/>
+        <u><strong><a name="egaux">Ensemble Symboles Egaux</a></strong></u><br/><br/>
+        -Séléctionner les deux fichiers à comparer,<br/>
+        -choisir la fonctionnalité "EnsemmbleSymbolesEgaux",<br/>
+           -excecuté l'application, <br/>
+           -visualiser le résultat dans la console<br/><br/>
+            <div align="center"><image src="egaux.jpg"/></div><br/>
+            <br/>
+            <u><strong><a name="max">LeByteMaximum</a></strong></u><br/><br/>
+        -Séléctionner le fichier<br/>
+        -choisir la fonctionnalité "LeByteMaximum",<br/>
+           -excecuté l'application, <br/>
+           -visualiser le résultat dans la console<br/><br/>
+            <div align="center"><image src="max.jpg"/></div><br/>
+          <br/>
+        <font color="#FF0000"<u><strong><a name="cle">Calculer la taille de la clé</a></strong></u><br/><br/><br/></font>
+        <u><strong><a name="data">Information data</a></strong></u><br/><br/>
+        -Séléctionner le fichier<br/>
+        -choisir la fonctionnalité "Information data",<br/>
+           -excecuté l'application, <br/>
+           -visualiser le résultat dans la console et le lien du fichier texte créer<br/><br/>
+            <div align="center"><image src="data.jpg"/></div><br/>
+          <br/><br/>
+		<br/>
+</body>
+
+</html>
