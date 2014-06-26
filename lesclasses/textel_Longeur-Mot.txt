@@ -1,0 +1,6 @@
+Mots de longeur 4 : 2
+Mots de longeur 1 : 8
+Mots de longeur 1 : 3
+Mots de longeur 1 : 4
+Mots de longeur 1 : 10
+Mots de longeur 1 : 9
